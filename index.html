@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DentaCare — Premium Dental Clinic</title>
+    <meta name="description" content="DentaCare offers premium dental services including general dentistry, cosmetic procedures, orthodontics, and dental implants. Book your appointment today." />
+    <meta name="keywords" content="dentist, dental clinic, teeth whitening, dental implants, orthodontics" />
+    <meta name="author" content="DentaCare" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <meta property="og:title" content="DentaCare — Premium Dental Clinic" />
+    <meta property="og:description" content="Expert dental care with a gentle touch. Services include general dentistry, cosmetic procedures, and more." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://dentacare.com" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Dentist",
+      "name": "DentaCare",
+      "description": "Premium dental clinic offering comprehensive dental services",
+      "telephone": "+1-555-0123",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Smile Avenue",
+        "addressLocality": "New York",
+        "addressRegion": "NY",
+        "postalCode": "10001"
+      }
+    }
+    </script>
+    <script>
+      (function() {
+        try {
+          const isDark = localStorage.getItem('darkMode');
+          if (isDark === 'true' || (isDark === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch(e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
