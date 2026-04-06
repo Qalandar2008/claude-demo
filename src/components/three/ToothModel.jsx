@@ -121,4 +121,63 @@ function Cusps({ isDark }) {
   return <group>{mb}{db}{ml}{dl}{cc}</group>;
 }
 
-/*
+/* Distinct 3 roots for the molar. */
+function Roots({ isDark }) {
+  const mat = (
+    <meshPhysicalMaterial
+      color={isDark ? '#c8d4da' : '#dde5ea'}
+      metalness={0.01}
+      roughness={0.25}
+      clearcoat={0.6}
+      clearcoatRoughness={0.2}
+      envMapIntensity={1.0}
+    />
+  );
+
+  // Mesiobuccal root
+  const mbGeo = new THREE.CylinderGeometry(0.09, 0.02, 0.6, 12);
+  const mesiobuccal = (
+    <mesh geometry={mbGeo} position={[-0.22, -0.27, -0.05]} rotation={[0.08, 0, -0.06]}>
+      {mat}
+    </mesh>
+  );
+
+  // Distobuccal root (slightly narrower)
+  const dbGeo = new THREE.CylinderGeometry(0.08, 0.02, 0.55, 12);
+  const distobuccal = (
+    <mesh geometry={dbGeo} position={[0.22, -0.25, -0.05]} rotation={[0.08, 0, 0.06]}>
+      {mat}
+    </mesh>
+  );
+
+  // Palatal root (longest, thickest, centered)
+  const pGeo = new THREE.CylinderGeometry(0.11, 0.02, 0.75, 12);
+  const palatal = (
+    <mesh geometry={pGeo} position={[0.0, -0.34, 0.12]} rotation={[-0.06, 0, 0]}>
+      {mat}
+    </mesh>
+  );
+
+  return <group>{mesiobuccal}{distobuccal}{palatal}</group>;
+}
+
+/* Complete molar tooth model: body + cusps + roots, gently floating & rotating. */
+export function ToothModel({ isDark = false }) {
+  const groupRef = useRef();
+
+  useFrame((_, delta) => {
+    if (groupRef.current) {
+      groupRef.current.rotation.y += delta * 0.2;
+    }
+  });
+
+  return (
+    <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.8}>
+      <group ref={groupRef} position={[0, -0.15, 0]}>
+        <ToothBody isDark={isDark} />
+        <Cusps isDark={isDark} />
+        <Roots isDark={isDark} />
+      </group>
+    </Float>
+  );
+}
